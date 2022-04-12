@@ -12,23 +12,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class App extends JFrame implements NativeKeyListener {
-    static String middlebg = "res/bongo_middle.png";
-    static String leftbg = "res/bongo_left.png";
-    static String rightbg = "res/bongo_right.png";
-
     JPanel panel;
 
     public void nativeKeyPressed(NativeKeyEvent e) {
         panel.revalidate();
         panel.repaint();
-
-		if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE) {
-            try {
-                GlobalScreen.unregisterNativeHook();
-            } catch (NativeHookException nativeHookException) {
-                nativeHookException.printStackTrace();
-            }
-        }
 	}
 
     public void nativeKeyReleased(NativeKeyEvent e) {
@@ -85,7 +73,6 @@ public class App extends JFrame implements NativeKeyListener {
                 if (task != null) {
                     task.cancel();
                     task = null;
-                    init = true;
                 }
 
                 task = new TimerTask() {
